@@ -1,0 +1,20 @@
+{
+  "name": "harvey.konan",
+  "version": "1.0.0",
+  "description": "Projets sur les fractales de mandlebrot",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desireKonan/fractals.git"
+  },
+  "author": "Harvey Konan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/desireKonan/fractals/issues"
+  },
+  "homepage": "https://github.com/desireKonan/fractals#readme"
+}
