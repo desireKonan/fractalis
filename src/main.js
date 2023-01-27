@@ -1,7 +1,9 @@
-var fractalScreen = document.getElementById('fractal-custom');
+var canvas = document.getElementById('fractalis');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+canvas.style.backgroundColor = `#ecf0f1`;
 
+var context = canvas.getContext('2d');
 
-//Programmer une application concernant les fractales.
-var context = fractalScreen.getContext('2d');
-
-console.log(context);
+var fractalisContext = new Fractalis(context);
+fractalisContext.start(1000);
