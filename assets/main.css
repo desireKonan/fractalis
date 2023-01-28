@@ -1,0 +1,12 @@
+body {
+   margin: auto;
+}
+
+canvas {
+    background-color: #ecf0f1;
+}
+
+#saveImage {
+    background-color: #2ecc71;
+    border-radius: 1px solid transparent;
+}
