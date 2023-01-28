@@ -1,8 +1,8 @@
 #### Fractalis
 
 Fractalis est un projet javascript qui me permet de gérer les fractales (les fractales étant des objets mathématiques complexes).
-- Affiche la fractale de MandleBrot.
-- Affiche la fractale de Julia.
+- La fractale de MandleBrot.
+- La fractale de Julia.
 
 
 #### Qu'est-ce-que une fractale ?

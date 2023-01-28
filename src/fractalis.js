@@ -1,10 +1,7 @@
 //Constante concernant notre fractale.
 const PARTICULE_PIX = 2;
 const WIDTH = 500, HEIGHT = 500;
-const XMIN = -2;
-const XMAX = 0.5;
-const YMIN = -1.25;
-const YMAX = 1.25;
+
 
 /**
  * Fractalis, classe chargée de gérer les différentes fractales.
@@ -32,13 +29,6 @@ class Fractalis {
     }
 
     /**
-     *  Log un message au niveau de la fonction.
-     */
-    #log() {
-        console.log(this.#context);
-    }
-
-    /**
      *  Dessine une particule de MandleBrot.
      */
     #drawParticule(x, y, color = 'black') {
@@ -56,6 +46,41 @@ class Fractalis {
      * @param {number} HEIGHT 
      */
     drawMandleBrotFractal(WIDTH = 500, HEIGHT = 500) {
+        for(let x = 0; x < WIDTH; x++) { 
+            for(let y = 0; y < HEIGHT; y++) {
+                let cx = (x * ( XMAX - XMIN ) / WIDTH + XMIN);
+                let cy = (y * ( YMIN - YMAX ) / HEIGHT + YMAX);
+                let xn = 0;
+                let yn = 0;
+                let n  = 0;
+
+                while(xn * xn + yn * yn < 4 && n < this.#MAX_ITERATION) {
+                    let tmp_x = xn;
+                    let tmp_y = yn;
+                    xn = tmp_x * tmp_x - tmp_y * tmp_y + cx;
+                    yn = 2 * tmp_x * tmp_y + cy;
+                    n++;
+                }
+
+                if(n == this.#MAX_ITERATION)
+                    this.#drawParticule(x, y);
+                else
+                    this.#drawParticule(x, y, 'white');
+            }
+        }
+    }
+
+    /**
+     * Dessine la fractale de Julia.
+     * @param {number} WIDTH
+     * @param {number} HEIGHT 
+     */
+    drawJuliaFractal(WIDTH = 500, HEIGHT = 500) {
+        const XMIN = -2;
+        const XMAX = 0.5;
+        const YMIN = -1.25;
+        const YMAX = 1.25;
+
         for(let x = 0; x < WIDTH; x++) { 
             for(let y = 0; y < HEIGHT; y++) {
                 let cx = (x * ( XMAX - XMIN ) / WIDTH + XMIN);
