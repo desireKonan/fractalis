@@ -1,15 +1,19 @@
 var fractalisContext = null;
+var canvas = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    var canvas = document.getElementById('fractalis');
-    canvas.width = window.innerWidth / 2;
-    canvas.height = window.innerHeight - 220;
+    canvas = document.getElementById('fractalis');
+    canvas.width = 500;
+    canvas.height = 500;
     
-    var context = canvas.getContext('2d');
-    
-    fractalisContext = new Fractalis(context);
+    fractalisContext = new fractalis(canvas, {
+        width: canvas.width,
+        height: canvas.height,
+        iteration: 50
+    });
+
     //On dessine la fractale de Mandlebrot.
-    fractalisContext.drawJuliaFractal();
+    fractalisContext.drawMandleBrotFractal();
 });
 
 
@@ -19,9 +23,6 @@ let saveImageButton = document.getElementById('saveImage');
 saveImageButton.addEventListener('click', function(ev) {
     ev.preventDefault();
 
-    canvas.toBlob((blob) => {
-        //Ajouter la fractale dans un fichier.
-        fractalisContext.saveFractalImage(blob);
-    }, 'image/png');
+    fractalisContext.save();
 });
 
