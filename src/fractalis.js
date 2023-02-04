@@ -56,8 +56,8 @@ class fractalis {
         
         for(let x = 0; x < this.options['width']; x++) { 
             for(let y = 0; y < this.options['height']; y++) {
-                let cx = (x * ( XMAX - XMIN ) / this.options['width'] + XMIN);
-                let cy = (y * ( YMIN - YMAX ) / this.options['height'] + YMAX);
+                let x0 = (x * ( XMAX - XMIN ) / this.options['width'] + XMIN);
+                let y0 = (y * ( YMIN - YMAX ) / this.options['height'] + YMAX);
                 let xn = 0;
                 let yn = 0;
                 let n  = 0;
@@ -65,8 +65,8 @@ class fractalis {
                 while(xn * xn + yn * yn < 4 && n < this.options.iteration) {
                     let tmp_x = xn;
                     let tmp_y = yn;
-                    xn = tmp_x * tmp_x - tmp_y * tmp_y + cx;
-                    yn = 2 * tmp_x * tmp_y + cy;
+                    xn = tmp_x * tmp_x - tmp_y * tmp_y + x0;
+                    yn = 2 * tmp_x * tmp_y + y0;
                     n++;
                 }
 
@@ -80,32 +80,28 @@ class fractalis {
 
     /**
      * Dessine la fractale de Julia.
-     * @param {number} WIDTH
-     * @param {number} HEIGHT 
      */
-    drawJuliaFractal() {
+    drawJuliaFractal(constant) {
         const XMIN = -2;
-        const XMAX = 0.5;
+        const XMAX = 2;
         const YMIN = -1.25;
         const YMAX = 1.25;
 
         for(let x = 0; x < this.options.width; x++) { 
             for(let y = 0; y < this.options.height; y++) {
-                let cx = (x * ( XMAX - XMIN ) / this.options.width + XMIN);
-                let cy = (y * ( YMIN - YMAX ) / this.options.height + YMAX);
-                let xn = 0;
-                let yn = 0;
+                let xn = XMIN + (x * ( XMAX - XMIN ) / this.options.width);
+                let yn = YMAX + (y * ( YMIN - YMAX ) / this.options.height);
                 let n  = 0;
 
-                while(xn * xn + yn * yn < 4 && n < this.this.options.iteration) {
+                while((xn * xn + yn * yn) < 4 && n < this.options.iteration) {
                     let tmp_x = xn;
                     let tmp_y = yn;
-                    xn = tmp_x * tmp_x - tmp_y * tmp_y + cx;
-                    yn = 2 * tmp_x * tmp_y + cy;
+                    xn = (tmp_x * tmp_x - tmp_y * tmp_y + constant.real);
+                    yn = (2 * tmp_x * tmp_y + constant.img);
                     n++;
                 }
 
-                if(n == this.this.options.iteration)
+                if(n == this.options.iteration)
                     this.#drawParticule(x, y);
                 else
                     this.#drawParticule(x, y, 'white');
